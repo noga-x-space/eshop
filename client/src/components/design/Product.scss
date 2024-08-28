@@ -1,0 +1,85 @@
+// /* Product Page */
+
+// // sort
+// .header {
+//     text-align: center;
+//     padding: 20px;
+//     background-color: #f8f4f9;
+//     border-bottom: 1px solid #e0d7e7;
+//   }
+  
+//   .title {
+//     font-family: "Playfair Display", serif;
+//     font-size: 2.5rem;
+//     color: #d27ca3;
+//     margin: 0;
+//     font-weight: bold;
+//   }
+  
+//   .sort-header {
+//     display: flex;
+//     justify-content: flex-end;
+//     align-items: center;
+//     padding: 10px 20px;
+//     background-color: #f8f4f9;
+//     border-bottom: 1px solid #e0d7e7;
+//     margin-bottom: 20px;
+//   }
+  
+//   .sort-label {
+//     font-family: "Roboto", sans-serif;
+//     font-size: 1rem;
+//     color: #6a617a;
+//     margin-right: 10px;
+//   }
+  
+//   .sort-select {
+//     font-family: "Roboto", sans-serif;
+//     font-size: 1rem;
+//     color: #6a617a;
+//     padding: 5px;
+//     border: 1px solid #d27ca3;
+//     border-radius: 5px;
+//     background-color: #ffffff;
+//   }
+//   .product-page {
+//     margin: 20px;
+//   }
+  
+//   .product-grid {
+//     display: grid;
+//     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+//     gap: 20px;
+//   }
+  
+//   .product-card {
+//     background-color: #fff;
+//     border: 1px solid #ddd;
+//     border-radius: 10px;
+//     padding: 20px;
+//     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+//     text-align: center;
+//   }
+  
+//   .product-card img {
+//     width: 100%;
+//     height: auto;
+//     border-radius: 10px;
+//   }
+  
+//   .product-price {
+//     color: #20bf6b;
+//     font-weight: bold;
+//   }
+  
+//   .product-description {
+//     font-size: 0.9em;
+//     color: #7d7d7d;
+//     margin: 10px 0;
+//   }
+  
+//   .product-category,
+//   .product-stock {
+//     font-size: 0.8em;
+//     color: #2d98da;
+//   }

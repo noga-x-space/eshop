@@ -1,7 +1,8 @@
 import React from "react";
 import { useState } from "react";
 import { useCookies } from "react-cookie";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
+import "./design/Auth.scss";
 
 const Auth = () => {
   const [cookies, setCookie, removeCookie] = useCookies(null);
@@ -12,8 +13,7 @@ const Auth = () => {
   const [error, setError] = useState(null);
   const [focusedButton, setFocusedButton] = useState("login");
 
-  const history = useHistory();
-  console.log(cookies, "cookies");
+  // const history = useHistory();
 
   const viewLogin = (status) => {
     setError(null);
@@ -34,17 +34,12 @@ const Auth = () => {
     });
     const data = await response.json();
 
-    console.log("data token: ", data.token, " data: ", data);
     if (data.detail) {
       setError(data.detail);
     } else {
       setCookie("UserName", data.userName);
       setCookie("AuthToken", data.token);
-
-      console.log("you made it in");
-      //refresh the page
-      // window.location.reload();
-      history.push("/");
+      // history.push("/");
     }
   };
 
@@ -54,41 +49,41 @@ const Auth = () => {
 
   return (
     <div className="auth-container">
-      {!cookies.UserName && (
+      {!cookies.UserName ? (
         <>
           <form>
             <h2>{isLogin ? "Log in" : "Register"}</h2>
             <input
               type="text"
-              placeholder="user name"
+              placeholder="Username"
               onChange={(e) => setUserName(e.target.value)}
             />
             <input
               type="password"
-              placeholder="password"
-              onChange={(e) => {
-                setPassword(e.target.value);
-              }}
+              placeholder="Password"
+              onChange={(e) => setPassword(e.target.value)}
             />
             {!isLogin && (
               <input
                 type="password"
-                placeholder="confirm password"
+                placeholder="Confirm Password"
                 onChange={(e) => setConfirmPassword(e.target.value)}
               />
             )}
             <input
               type="submit"
               onClick={(e) => handleSubmit(e, isLogin ? "login" : "signup")}
-              className="create"
-              value="submit"
+              className="create-btn"
+              value="Submit"
             />
-            {error && <p>{error}</p>}
+            {error && <p className="error-message">{error}</p>}
           </form>
+         {isLogin && <label className="forgot-password">Forgot password?</label>}
           <div className="auth-options">
             <button
-              className={focusedButton === "signup" ? "active" : ""}
-              tabindex="0"
+              className={`auth-button ${
+                focusedButton === "signup" ? "active" : ""
+              }`}
               onClick={() => {
                 viewLogin(false);
                 handleButtonToggle("signup");
@@ -97,8 +92,9 @@ const Auth = () => {
               Sign Up
             </button>
             <button
-              tabindex="0"
-              className={focusedButton === "login" ? "active" : ""}
+              className={`auth-button ${
+                focusedButton === "login" ? "active" : ""
+              }`}
               onClick={() => {
                 viewLogin(true);
                 handleButtonToggle("login");
@@ -108,19 +104,11 @@ const Auth = () => {
             </button>
           </div>
         </>
-      )}
-      {cookies.UserName && (
+      ) : (
         <h3>
           You are currently logged in as{" "}
-          <span
-            style={{
-              backgroundColor: "rgb(250,250,250)",
-              color: "rgb(100,150,220)",
-            }}
-          >
-            {cookies.UserName}
-          </span>
-          . Please logout before logging in with a different account.
+          <span className="highlighted-username">{cookies.UserName}</span>.
+          Please logout before logging in with a different account.
         </h3>
       )}
     </div>

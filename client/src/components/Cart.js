@@ -19,7 +19,19 @@ const Cart = () => {
     }
   };
 
-  const Checkout = async () => {};
+  const Checkout = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:8000/checkout/${userName}`
+      );
+      const resCart = await response.json();
+      setCart(resCart);
+
+      window.location.reload(false);
+    } catch (err) {
+      console.error(err);
+    }
+  };
   useEffect(() => {
     getCartData();
   }, []);
@@ -32,7 +44,7 @@ const Cart = () => {
       <div className="cart-items">
         <CartProducts products={cart} />
       </div>
-      <button className="button-1" onClick={Checkout()}>
+      <button className="button-1" onClick={() => Checkout()}>
         Checkout
       </button>
     </section>

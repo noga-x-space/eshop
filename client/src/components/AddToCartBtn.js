@@ -46,7 +46,7 @@ function AddToCartBtn({ productName }) {
     <div className="shopping-cart">
       <button
         type="button"
-        class="btn add-to-cart button-1"
+        class=" add-to-cart button-1"
         onClick={() => addToCart(productName)}
       >
         Add Me!

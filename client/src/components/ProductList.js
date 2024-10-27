@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Product from "./Product";
 import CategoryBTN from "./CategoryBTN";
+import SimilarProducts from "./SimilarProducts";
 
 ///improvements: limit top 5 buttons, add "show all"
 
@@ -26,7 +27,7 @@ const ProductList = () => {
     try {
       const response = await fetch("http://localhost:8000/categories");
       const resCategories = await response.json();
-      //   console.log("categories:", resCategories);
+        console.log("categories:", resCategories);
       setCategories(resCategories);
       console.log("THESE ARE THE CATEGORIES: ", categories);
     } catch (err) {
@@ -109,11 +110,10 @@ const ProductList = () => {
 
 export default ProductList;
 
-
-
 /// quantity:
 
-{/* <div className="quantity-container">
+{
+  /* <div className="quantity-container">
                 <label htmlFor={`quantity-${index}`}>Qty: </label>
                 <input
                   id={`quantity-${index}`}
@@ -124,7 +124,8 @@ export default ProductList;
                     handleQuantityChange(product.product_name, e.target.value)
                   }
                 />
-              </div> */}
+              </div> */
+}
 // const handleQuantityChange = (productName, quantity) => {
 // if (quantity > 0) {
 // onQuantityUpdate(productName, quantity);

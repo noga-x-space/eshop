@@ -1,16 +1,37 @@
 import React, { useEffect, useState } from "react";
-// import "./testing.scss"; // Import the stylesheet
 import "./design/testing.scss";
 import { useLocation } from "react-router-dom";
 import ProductImage from "./ProductImage";
 import CartIcon from "./AddToCartBtn";
+import SimilarProducts from "./SimilarProducts";
+import ProductRating from "./ProductRating";
+import { useCookies } from "react-cookie";
 
 const Testing = () => {
   const location = useLocation();
   const product = location.state?.product; // Check for existence of product data
   const [similarProducts, setSimilarProducts] = useState([]);
+  const [cookies, setCookie, removeCookie] = useCookies(null);
 
   ///// for my personal use- current list of product.properties
+
+  useEffect(() => {
+    const fetchSimilarProducts = async () => {
+      if (product) {
+        try {
+          const response = await fetch(
+            `http://localhost:8000/products?category=${product.category}`
+          );
+          const data = await response.json();
+          setSimilarProducts(data);
+        } catch (error) {
+          console.error("Error fetching similar products:", error);
+        }
+      }
+    };
+
+    fetchSimilarProducts();
+  }, [product]);
 
   useEffect(() => {
     console.log("the product is: ", product);
@@ -44,21 +65,32 @@ const Testing = () => {
         <div className="main-product-image" styles={{ maxWidth: "10px" }}>
           <ProductImage productName={product.product_name} />
         </div>
-        <div className="product-details">
-          <h1>{product.product_name}</h1>
-          <p className="product-category">{product.category}</p>
-          <p className="product-description">{product.description}</p>
-          <p className="product-price"> ${product.price}</p>
-          {product.quantity_in_stock < 10 && (
-            <p className="product-stock">
-              Only {product.quantity_in_stock} Left!
-            </p>
-          )}
+        <div className="container-right-side">
+          <div className="product-details">
+            <h1>{product.product_name}</h1>
+            <p className="product-category">{product.category}</p>
+            <p className="product-description">{product.description}</p>
+            <p className="product-price"> ${product.price}</p>
+            {product.quantity_in_stock < 10 && (
+              <p className="product-stock">
+                Only {product.quantity_in_stock} Left!
+              </p>
+            )}
 
-          <CartIcon productName={product.product_name} />
+            {/* ratings */}
+            <ProductRating
+              productName={product.product_name}
+              userName={cookies.UserName}
+            />
+
+            <CartIcon productName={product.product_name} />
+          </div>
+
+          <SimilarProducts className="suggestions" products={similarProducts} />
         </div>
+        {/* Render the similar products */}
+        {/* </div> */}
       </div>
-      <div className="absolute-div">{/* ... other elements ... */}</div>
     </div>
   );
 };

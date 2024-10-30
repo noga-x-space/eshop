@@ -1,24 +1,37 @@
 import React, { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
-import Product from "./Product";
+import PurchasedProducts from "./PurchasedProducts";
 
 export default function Homepage() {
   const [users, setUsers] = useState(null);
   const [cookies, setCookie, removeCookie] = useCookies(null);
+  const [purchases, setPurchases] = useState(null);
 
   const getUsers = async () => {
     try {
       const response = await fetch("http://localhost:8000/getusers");
       const resUsers = await response.json();
-      console.log("Fetched users:", resUsers); // Log the actual response
       setUsers(resUsers);
     } catch (err) {
       console.error(err);
     }
   };
 
+  const getPrevPurchases = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:8000/${cookies.UserName}/`
+      );
+      const data = await response.json();
+      setPurchases(data.average_rating || 0);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   useEffect(() => {
     getUsers();
+    getPrevPurchases();
   }, []);
 
   return (
@@ -42,6 +55,17 @@ export default function Homepage() {
       ) : (
         <p>No users found</p>
       )}
+      {purchases && (
+        <div className="purchases">
+          {purchases.map((prod, index) => {
+            <li key={index}>{prod.product_name}</li>;
+          })}
+        </div>
+      )}
+      <div>
+        <h1>My Purchased Products</h1>
+        <PurchasedProducts />
+      </div>
     </div>
   );
 }

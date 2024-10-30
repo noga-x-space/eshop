@@ -6,6 +6,7 @@ import { useState } from "react";
 import ProductDetails from "./ProductDetails";
 // import Testing from "./Testing";
 import { useNavigate } from "react-router-dom";
+import ProductRating from "./ProductRating";
 
 const Product = ({ products }) => {
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -44,6 +45,10 @@ const Product = ({ products }) => {
                   Only {product.quantity_in_stock} Left!
                 </p>
               )}
+              <ProductRating
+                productName={product.product_name}
+                // userName={cookies.UserName}
+              />
 
               <CartIcon productName={product.product_name} />
             </div>

@@ -23,18 +23,20 @@ const CartProducts = ({ products }) => {
   };
 
   return (
-    <div className="cart-products">
+    <div className="cart-all-products">
       {products && products.length > 0 ? (
         products.map((product, index) => (
           <div className="cart-product-card" key={index}>
             <div className="cart-image-container">
               <ProductImage productName={product.product_name} />
             </div>
-            <div className="cart-product-details">
-              <h4>{product.product_name}</h4>
-              <p className="product-quantity">Quantity: {product.quantity}</p>
-            </div>
-            <div className="cart-product-price">${product.price}</div>
+            <div className="cart-product-right-side">
+              <div className="cart-product-details">
+                <h4>{product.product_name}</h4>
+                <p className="product-quantity"> {product.quantity}</p>
+              </div>
+              <div className="cart-product-price">${product.price}</div>
+            
             <button className="trash-icon">
               <img
                 src={"/trash-bin.png"}
@@ -43,6 +45,7 @@ const CartProducts = ({ products }) => {
                 onClick={() => handleDelete(product.product_name)}
               />
             </button>
+            </div>
           </div>
         ))
       ) : (

@@ -1,0 +1,43 @@
+.similar-products {
+  background-color: white;
+  // #f4e1d2
+  max-height: 50%;
+  margin-top: 20px;
+  border-radius: 20%;
+
+  .product-grid {
+    display: flex;
+    overflow-x: auto; // Enables horizontal scrolling if necessary
+    max-height: 100%;
+
+    .product-card {
+      min-width: 200px; // Set a minimum width for cards
+      max-width: 100%; // Prevent them from growing larger than the container
+      margin-right: 10px; // Space between cards
+      padding: 0; // Remove padding to bring elements closer
+      display: flex; // Allow inner content to use flexbox
+      flex-direction: column; // Stack content vertically
+      justify-content: flex-start; // Align items at the top
+
+      // Ensure box-sizing is set correctly
+      box-sizing: border-box;
+
+      img {
+        margin-bottom: 0.5rem; // Adjust spacing between image and text
+        padding: 0.5rem; // Adjust if needed
+        height: 150px; // Optional: set a max height for images if needed
+
+        object-fit: contain; /* Ensure the image maintains its aspect ratio */
+      }
+
+      h2, // Assuming your product name is in an h2
+        .product-price {
+        margin: 0; // Remove margin to minimize spacing
+      }
+
+      &:last-child {
+        margin-right: 0; // Remove margin on last card
+      }
+    }
+  }
+}

@@ -12,7 +12,7 @@ const ProductImage = ({ productName }) => {
         return response.blob();
       })
       .then((blob) => {
-        console.log("Blob received:", blob); // Check the blob in the console
+        // console.log("Blob received:", blob); // Check the blob in the console
         const url = URL.createObjectURL(blob);
         setImageSrc(url);
       })

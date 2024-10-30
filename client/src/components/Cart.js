@@ -4,8 +4,9 @@ import { useCookies } from "react-cookie";
 import "./design/Cart.scss";
 
 const Cart = () => {
-  const [cart, setCart] = useState(null);
+  const [cart, setCart] = useState([]);
   const [cookies] = useCookies(null);
+  // const [isCartEmpty, setIsCartEmpty] = useState(true); // State to track if the cart is empty
 
   const userName = cookies.UserName;
 
@@ -26,6 +27,7 @@ const Cart = () => {
       );
       const resCart = await response.json();
       setCart(resCart);
+      // setIsCartEmpty(resCart.length === 0);
 
       window.location.reload(false);
     } catch (err) {
@@ -36,6 +38,8 @@ const Cart = () => {
     getCartData();
   }, []);
 
+  const isCartEmpty = cart.length === 0;
+
   return (
     <section className="cart-preview">
       <header className="cart-header">
@@ -44,9 +48,11 @@ const Cart = () => {
       <div className="cart-items">
         <CartProducts products={cart} />
       </div>
-      <button className="button-1" onClick={() => Checkout()}>
-        Checkout
-      </button>
+      {!isCartEmpty && (
+        <button className="button-1" onClick={() => Checkout()}>
+          Checkout
+        </button>
+      )}
     </section>
   );
 };

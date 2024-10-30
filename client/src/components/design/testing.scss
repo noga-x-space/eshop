@@ -12,37 +12,35 @@ $color: #eddfd4;
   display: flex; /* Use flexbox for layout */
   // align-items: center;
   margin-bottom: 1rem;
+}
+.content .product-details {
+  margin: 5%;
+  // background-color: aqua;
+  flex-direction: column; /* Stack children vertically */
+  align-items: center; /* Center children horizontally */
+  // text-align: center; /* Optional: Center text inside children */
 
-  .product-details {
-    margin: 5%;
-    // background-color: aqua;
-    flex-direction: column; /* Stack children vertically */
-    align-items: center; /* Center children horizontally */
-    // text-align: center; /* Optional: Center text inside children */
+  h1 {
+    font-size: 5rem;
+    border-radius: 2rem;
+  }
 
-    h1 {
-      font-size: 5rem;
-      border-radius: 2rem;
-// box-shadow: 10px 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    p {
-      // font-weight: 2000;
-      font-size: large;
-    }
-    .product-category {
-    }
-    .product-description text {
-      font-weight: 2000;
-      font-size: large;
-    }
-    .product-price {
-    }
+  p {
+    font-size: large;
+  }
+  .product-description text {
+    font-weight: 2000;
+    font-size: large;
   }
 }
+
+.content .similar-products {
+  margin: 3rem;
+  // background-color: aqua;
+} 
 .main-product-image {
   max-width: 40%; /* Adjust width as needed */
-  // margin-right: 20px; /* Space between image and details */
+  // margin-right: 2%; /* Space between image and details */
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -55,26 +53,30 @@ $color: #eddfd4;
 .product-details {
   flex-grow: 1; /* Allow details to take remaining space */
 }
-
-.blobs {
+.container-right-side {
+  // margin: 2%;
+  width: 60%;
 }
+
+// .blobs {
+// }
 .top-left-img {
   position: absolute;
+  // position: fixed;
   max-width: 16%;
   transform: scale(1, -1);
   top: 0;
   left: 0;
 }
 .bottom-left-img {
-  position: absolute;
-  // position: sticky;
+  position: fixed;
   max-width: 20%;
   bottom: 0;
   left: 0;
 }
 
 .bottom-right-img {
-  position: absolute;
+  position: fixed;
   max-width: 20%;
   transform: scale(-1, 1);
   bottom: 0;

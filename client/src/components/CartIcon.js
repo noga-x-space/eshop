@@ -32,7 +32,7 @@ const CartIcon = () => {
 
   return (
     // <section className="cart-preview">
-    <button className="cart-icon" onClick={toggleCart}>
+    <button className="cart-icon" onClick={toggleCart} >
       <img src={"/shopping-cart.png"} className="cart-image" alt="image" />
       <span className="cart-count">{cart}</span>
 

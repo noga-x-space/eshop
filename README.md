@@ -8,7 +8,7 @@ A modern, user-friendly e-commerce platform for purchasing a range of lip gloss 
   - [Getting Started](#Getting-Started)
   - [Project Structure](#Project-Structure)
   - [Contributing](#Contributing)
-  - [License](#Licensee)
+  - [License](#License)
 
 
 ## Features:

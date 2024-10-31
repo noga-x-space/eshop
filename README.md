@@ -36,7 +36,7 @@ the collection:
 
 the product page: 
 
-![image of the screen](/demo/product-page.png)
+![image of the screen](/demo/product-page2.png)
 ## Getting Started
 ### Prerequisites
   - Node.js (v14 or higher) and npm installed

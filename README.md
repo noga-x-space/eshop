@@ -45,9 +45,9 @@ the product page:
   - Clone the repository
 
 bash
-git clone
+git clone https://github.com/noga-x-space/eshop.git
 
-cd lipgloss-ecommerce
+cd eshop
 
   - Set up the backend
 

@@ -4,6 +4,7 @@ A modern, user-friendly e-commerce platform for purchasing a range of lip gloss 
 ## Table of Contents
   - Features
   - Tech Stack
+  - Demo
   - Getting Started
   - Project Structure
   - Contributing
@@ -25,6 +26,17 @@ A modern, user-friendly e-commerce platform for purchasing a range of lip gloss 
   - State Management: Context API and React hooks
   - Authentication: JSON Web Token (JWT)
 
+## Demo
+
+### provided a few of the website's features:
+
+the collection: 
+
+![image of the screen](/demo/product-preview.png)
+
+the product page: 
+
+![image of the screen](/demo/product-page.png)
 ## Getting Started
 ### Prerequisites
   - Node.js (v14 or higher) and npm installed

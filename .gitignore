@@ -2,10 +2,8 @@ node_modules
 
 server/Dockerfile.yml
 
-server/.env
+.env
 
-server/*.js
 
 server/*.py
 
-!server/server.js

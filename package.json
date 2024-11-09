@@ -12,7 +12,11 @@
   "license": "ISC",
   "dependencies": {
     "@mui/material": "^5.14.0",
+    "nginx": "^1.0.8",
     "react-router-dom": "^5.3.4",
     "react-scripts": "^5.0.1"
+  },
+  "devDependencies": {
+    "vite": "^5.4.10"
   }
 }

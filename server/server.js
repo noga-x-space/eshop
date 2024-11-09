@@ -4,13 +4,18 @@ const { v4: uuidv4 } = require("uuid");
 const app = express();
 const pool = require("./db");
 const cors = require("cors");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const fs = require("fs");
 
 app.use(cors());
 app.use(express.json());
 // app.use(bodyParser.json());
+
+app.get("/", (req, res) => {
+  res.send("Hello from backend API!");
+  console.log(`Server is running on port ${PORT}`);
+});
 
 ////////////////////////////users
 //show all users
@@ -447,8 +452,11 @@ app.post("/rate/:userName/:product/", async (req, res) => {
 //   }
 // });
 
-app.listen(PORT, console.log(`listening on port ${PORT}`));
+// app.listen(PORT, console.log(`listening on port ${PORT}`));
 
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`Server is running on port ${PORT}`);
+});
 /////////// users ///////////
 
 //create a user

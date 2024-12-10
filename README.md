@@ -2,13 +2,13 @@
 A modern, user-friendly e-commerce platform for purchasing a range of lip gloss products, developed with a focus on intuitive UI, secure authentication, and efficient product management.
 
 ## Table of Contents
-  - Features
-  - Tech Stack
-  - Demo
-  - Getting Started
-  - Project Structure
-  - Contributing
-  - License
+  - [Features](#Features)
+  - [Demo](#Demo)
+  - [Tech Stack](#Tech-Stack)
+  - [Getting Started](#Getting-Started)
+  - [Project Structure](#Project-Structure)
+  - [Contributing](#Contributing)
+  - [License](#License)
 
 
 ## Features:
@@ -18,13 +18,6 @@ A modern, user-friendly e-commerce platform for purchasing a range of lip gloss 
   - User Cart and Checkout: Add, edit, and review items in the cart with a sleek, responsive design.
   - Product Ratings: Rate and view reviews for each product.
   - Real-time Sorting and Filtering: Sort products by price, popularity, and category.
-
-## Tech Stack
-  - Frontend: React, SCSS, Bootstrap
-  - Backend: Node.js, Express.js, PostgreSQL
-  - Database: PostgreSQL for reliable data handling
-  - State Management: Context API and React hooks
-  - Authentication: JSON Web Token (JWT)
 
 ## Demo
 
@@ -37,6 +30,15 @@ the collection:
 the product page: 
 
 ![image of the screen](/demo/product-page.png)
+
+
+## Tech Stack
+  - Frontend: React, SCSS, Bootstrap
+  - Backend: Node.js, Express.js, PostgreSQL
+  - Database: PostgreSQL for reliable data handling
+  - State Management: Context API and React hooks
+  - Authentication: JSON Web Token (JWT)
+
 ## Getting Started - Option 1 - npm
 ### Prerequisites
   - Node.js (v14 or higher) and npm installed

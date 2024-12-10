@@ -14,9 +14,9 @@ const ProductList = () => {
 
   const getProducts = async () => {
     try {
-      const response = await fetch("http://localhost:8000/products");
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}:8000/products`);
       const resProducts = await response.json();
-      console.log("Fetched products:", resProducts);
+      
       setProducts(resProducts);
     } catch (err) {
       console.error(err);
@@ -25,11 +25,9 @@ const ProductList = () => {
 
   const getCategories = async () => {
     try {
-      const response = await fetch("http://localhost:8000/categories");
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}:8000/categories`);
       const resCategories = await response.json();
-        console.log("categories:", resCategories);
       setCategories(resCategories);
-      console.log("THESE ARE THE CATEGORIES: ", categories);
     } catch (err) {
       console.error(err);
     }
@@ -45,7 +43,7 @@ const ProductList = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:8000/categories/${categoryId}`
+        `${process.env.REACT_APP_BACKEND_URL}:8000/categories/${categoryId}`
       );
       const resProducts = await response.json();
       setProducts(resProducts);
@@ -75,7 +73,6 @@ const ProductList = () => {
         <h1 className="title">{TITLE}</h1>
       </header>
       <div className="sort-header">
-        {/* <CategoryBTN  /> */}
         <div className="sort-buttons">
           {categories.map((category, index) => (
             <button

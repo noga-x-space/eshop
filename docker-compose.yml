@@ -8,6 +8,8 @@ services:
       - "3000:3000"
     depends_on:
       - backend
+    env_file:
+      - ./client/src/.env
 
   backend:
     build: ./server

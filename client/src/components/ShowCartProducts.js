@@ -9,14 +9,9 @@ const CartProducts = ({ products }) => {
 
   const handleDelete = async (productName) => {
     try {
-      const response = await fetch(
-        `http://localhost:8000/delete/${userName}/${productName}`
-        // {
-        //   method: "DELETE", // Use DELETE method
-        // }
+      await fetch(
+        `${process.env.REACT_APP_BACKEND_URL}:8000/delete/${userName}/${productName}`
       );
-      const resDelete = await response.json();
-      console.log(resDelete);
     } catch (err) {
       console.error(err);
     }
@@ -36,15 +31,15 @@ const CartProducts = ({ products }) => {
                 <p className="product-quantity"> {product.quantity}</p>
               </div>
               <div className="cart-product-price">${product.price}</div>
-            
-            <button className="trash-icon">
-              <img
-                src={"/trash-bin.png"}
-                className="cart-image "
-                alt="image"
-                onClick={() => handleDelete(product.product_name)}
-              />
-            </button>
+
+              <button className="trash-icon">
+                <img
+                  src={"/trash-bin.png"}
+                  className="cart-image "
+                  alt="image"
+                  onClick={() => handleDelete(product.product_name)}
+                />
+              </button>
             </div>
           </div>
         ))

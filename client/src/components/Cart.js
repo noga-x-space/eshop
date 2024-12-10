@@ -6,13 +6,12 @@ import "./design/Cart.scss";
 const Cart = () => {
   const [cart, setCart] = useState([]);
   const [cookies] = useCookies(null);
-  // const [isCartEmpty, setIsCartEmpty] = useState(true); // State to track if the cart is empty
 
   const userName = cookies.UserName;
 
   const getCartData = async () => {
     try {
-      const response = await fetch(`http://localhost:8000/cart/${userName}`);
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}:8000/cart/${userName}`);
       const resCart = await response.json();
       setCart(resCart);
     } catch (err) {
@@ -23,7 +22,7 @@ const Cart = () => {
   const Checkout = async () => {
     try {
       const response = await fetch(
-        `http://localhost:8000/checkout/${userName}`
+        `${process.env.REACT_APP_BACKEND_URL}:8000/checkout/${userName}`
       );
       const resCart = await response.json();
       setCart(resCart);

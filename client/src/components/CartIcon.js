@@ -17,7 +17,7 @@ const CartIcon = () => {
   const countCart = async () => {
     try {
       const response = await fetch(
-        `http://localhost:8000/cartitems/${userName}`
+        `${process.env.REACT_APP_BACKEND_URL}:8000/cartitems/${userName}`
       );
       const resCart = await response.json();
       setCart(resCart);
@@ -31,7 +31,6 @@ const CartIcon = () => {
   }, []);
 
   return (
-    // <section className="cart-preview">
     <button className="cart-icon" onClick={toggleCart} >
       <img src={"/shopping-cart.png"} className="cart-image" alt="image" />
       <span className="cart-count">{cart}</span>

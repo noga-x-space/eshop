@@ -9,7 +9,9 @@ export default function Homepage() {
 
   const getUsers = async () => {
     try {
-      const response = await fetch("http://localhost:8000/getusers");
+      const response = await fetch(
+        `${process.env.REACT_APP_BACKEND_URL}:8000/getusers`
+      );
       const resUsers = await response.json();
       setUsers(resUsers);
     } catch (err) {
@@ -18,14 +20,16 @@ export default function Homepage() {
   };
 
   const getPrevPurchases = async () => {
-    try {
-      const response = await fetch(
-        `http://localhost:8000/${cookies.UserName}/`
-      );
-      const data = await response.json();
-      setPurchases(data.average_rating || 0);
-    } catch (err) {
-      console.log(err);
+    if (cookies.UserName) {
+      try {
+        const response = await fetch(
+          `${process.env.REACT_APP_BACKEND_URL}:8000/${cookies.UserName}/`
+        );
+        const data = await response.json();
+        setPurchases(data.average_rating || 0);
+      } catch (err) {
+        console.error(err);
+      }
     }
   };
 
@@ -69,5 +73,3 @@ export default function Homepage() {
     </div>
   );
 }
-
-//rfc / rafce

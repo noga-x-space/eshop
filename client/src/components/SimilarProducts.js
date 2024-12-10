@@ -1,6 +1,5 @@
 import React from "react";
 import ProductImage from "./ProductImage";
-import CartIcon from "./AddToCartBtn";
 import { useNavigate } from "react-router-dom";
 import "./design/SimilarProducts.scss";
 import ProductRating from "./ProductRating";
@@ -9,7 +8,7 @@ const SimilarProducts = ({ products }) => {
   const navigate = useNavigate();
 
   const handleProductClick = (product) => {
-    navigate("/t", { state: { product } });
+    navigate("/details", { state: { product } });
   };
 
   return (
@@ -30,7 +29,6 @@ const SimilarProducts = ({ products }) => {
               <h3>{product.product_name}</h3>
               <ProductRating
                 productName={product.product_name}
-                // userName={cookies.UserName}
               />
               <p className="product-price"> ${product.price}</p>
             </div>
@@ -44,13 +42,3 @@ const SimilarProducts = ({ products }) => {
 };
 
 export default SimilarProducts;
-
-// import React from 'react'
-
-// function SimilarProducts() {
-//   return (
-//     <div>SimilarProducts</div>
-//   )
-// }
-
-// export default SimilarProducts

@@ -20,7 +20,7 @@ function AddToCartBtn({ productName }) {
     // alert("User  logged in");
     try {
       const response = await fetch(
-        `http://localhost:8000/cart/${userName}/${productName}`,
+        `${process.env.REACT_APP_BACKEND_URL}:8000/cart/${userName}/${productName}`,
         {
           method: "POST",
           headers: {
@@ -33,7 +33,6 @@ function AddToCartBtn({ productName }) {
       );
 
       if (response.ok) {
-        console.log("Product added to cart");
       } else {
         console.error("Failed to add product to cart");
       }

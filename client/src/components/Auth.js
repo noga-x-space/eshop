@@ -27,11 +27,14 @@ const Auth = () => {
       return;
     }
 
-    const response = await fetch(`http://localhost:8000/${endpoint}`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ userName, password }),
-    });
+    const response = await fetch(
+      `${process.env.REACT_APP_BACKEND_URL}:8000/${endpoint}`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ userName, password }),
+      }
+    );
     const data = await response.json();
 
     if (data.detail) {
@@ -78,7 +81,9 @@ const Auth = () => {
             />
             {error && <p className="error-message">{error}</p>}
           </form>
-         {isLogin && <label className="forgot-password">Forgot password?</label>}
+          {isLogin && (
+            <label className="forgot-password">Forgot password?</label>
+          )}
           <div className="auth-options">
             <button
               className={`auth-button ${

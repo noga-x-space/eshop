@@ -16,10 +16,9 @@ const PurchasedProducts = () => {
   useEffect(() => {
     const fetchPurchasedProducts = async () => {
       const response = await fetch(
-        `http://localhost:8000/purchases/${userName}`
+        `${process.env.REACT_APP_BACKEND_URL}:8000/purchases/${userName}`
       );
       const data = await response.json();
-      console.log("Purchased products data:", data); // Add this line
       setPurchasedProducts(data);
     };
 
@@ -32,13 +31,11 @@ const PurchasedProducts = () => {
         purchasedProducts.map((product) => (
           <div
             className="product-card"
-            // key={index}
-            // onClick={() => handleProductClick(product)}
           >
             <div
               className="image-container"
               onClick={() => {
-                navigate("/t", { state: { product } });
+                navigate("/details", { state: { product } });
               }}
             >
               <ProductImage productName={product.product_name} />

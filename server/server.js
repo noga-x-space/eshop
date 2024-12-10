@@ -457,38 +457,3 @@ app.post("/rate/:userName/:product/", async (req, res) => {
 app.listen(PORT, "0.0.0.0", () => {
   console.log(`Server is running on port ${PORT}`);
 });
-/////////// users ///////////
-
-//create a user
-
-// app.post("/signup", async (req, res) => {
-//   const { userName, password } = req.body;
-//   //encrypting the passwords:
-//   const salt = bcrypt.genSaltSync(10);
-//   const hashedPassword = bcrypt.hashSync(password, salt);
-
-//   try {
-//     const signup = await pool.query(
-//       `INSERT INTO users (user_name, hashed_password) VALUES($1, $2)`,
-//       [userName, hashedPassword]
-//     );
-//     const token = jwt.sign({ userName }, "secret", { expiresIn: "1hr" });
-//     res.json({ userName, token });
-//   } catch (err) {
-//     console.error(err);
-//     if (err) {
-//       res.json({ detail: err.detail });
-//     }
-//   }
-// });
-
-//show all users
-// app.get("/getusers", async (req, res) => {
-//   try {
-//     const users = await pool.query("SELECT * FROM Users");
-//     res.json(users.rows);
-//     console.log(users.rows);
-//   } catch (err) {
-//     console.error(err);
-//   }
-// });

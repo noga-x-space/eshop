@@ -4,7 +4,6 @@ import CartIcon from "./AddToCartBtn";
 import "./design/Product.scss";
 import { useState } from "react";
 import ProductDetails from "./ProductDetails";
-// import Testing from "./Testing";
 import { useNavigate } from "react-router-dom";
 import ProductRating from "./ProductRating";
 
@@ -14,8 +13,6 @@ const Product = ({ products }) => {
 
   const handleProductClick = (product) => {
     setSelectedProduct(product);
-    console.log(selectedProduct);
-    // navigate("/t", { state: { product } }); ////// this line navigates to the testing element
   };
 
   return (
@@ -31,7 +28,7 @@ const Product = ({ products }) => {
               <div
                 className="image-container"
                 onClick={() => {
-                  navigate("/t", { state: { product } });
+                  navigate("/details", { state: { product } });
                 }}
               >
                 <ProductImage productName={product.product_name} />
@@ -47,7 +44,6 @@ const Product = ({ products }) => {
               )}
               <ProductRating
                 productName={product.product_name}
-                // userName={cookies.UserName}
               />
 
               <CartIcon productName={product.product_name} />
@@ -57,9 +53,6 @@ const Product = ({ products }) => {
           <p>No products found</p>
         )}
       </div>
-      {/* {selectedProduct && ( 
-        <Testing product={selectedProduct} /> 
-      )} */}
     </div>
   );
 };

@@ -6,11 +6,9 @@ const CategoryBTN = () => {
 
   const getCategories = async () => {
     try {
-      const response = await fetch("http://localhost:8000/categories");
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}:8000/categories`);
       const resCategories = await response.json();
-      //   console.log("categories:", resCategories);
       setCategories(resCategories);
-      console.log("THESE ARE THE CATEGORIES: ", categories);
     } catch (err) {
       console.error(err);
     }

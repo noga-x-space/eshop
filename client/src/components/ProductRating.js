@@ -13,22 +13,19 @@ const ProductRating = ({ productName, userName, rateOption = false }) => {
     const fetchAverageRating = async () => {
       //the average
       const responseAVG = await fetch(
-        `http://localhost:8000/rate/${productName}/`
+        `${process.env.REACT_APP_BACKEND_URL}:8000/rate/${productName}/`
       );
       const dataAVG = await responseAVG.json();
-      //   setAvgRating(dataAVG.avg || 0);
-      console.log("Average rating response:", dataAVG.avg);
 
       const avg = parseFloat(dataAVG.avg);
       setAvgRating(isNaN(avg) ? 0 : avg); // Set to 0 if avg is NaN
 
       // the amount of buyers
       const responseSUM = await fetch(
-        `http://localhost:8000/buyers/${productName}`
+        `${process.env.REACT_APP_BACKEND_URL}:8000/buyers/${productName}`
       );
       const dataSUM = await responseSUM.json();
       setBuyers(dataSUM.count, 0);
-      console.log("buyers ", buyers);
     };
 
     fetchAverageRating();
@@ -37,7 +34,7 @@ const ProductRating = ({ productName, userName, rateOption = false }) => {
     const fetchBought = async () => {
       try {
         const responseBought = await fetch(
-          `http://localhost:8000/purchases/${userName}`
+          `${process.env.REACT_APP_BACKEND_URL}:8000/purchases/${userName}`
         );
         const purchasedProducts = await responseBought.json(); // Store the result here
         const hasBought = purchasedProducts.some(
@@ -58,14 +55,13 @@ const ProductRating = ({ productName, userName, rateOption = false }) => {
 
     // Send the rating to the server
     const response = await fetch(
-      `http://localhost:8000/rate/${userName}/${productName}/`,
+      `${process.env.REACT_APP_BACKEND_URL}:8000/rate/${userName}/${productName}/`,
       {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ rating: newValue }),
-        // body: JSON.stringify({ rating: 4.5 }),
       }
     );
 
@@ -84,9 +80,6 @@ const ProductRating = ({ productName, userName, rateOption = false }) => {
         </>
       )}
       {!rateOption && buyers}
-      {/* <Typography component="legend">
-        Average Rating: {avgRating.toFixed(1)}
-      </Typography> */}
 
       {rateOption && (
         <Rating
@@ -96,11 +89,6 @@ const ProductRating = ({ productName, userName, rateOption = false }) => {
           onChange={(event, newValue) => handleRatingChange(newValue)}
         />
       )}
-      {/* {rateOption && (
-        <Button variant="contained" onClick={() => handleRatingChange(value)}>
-          Submit Rating
-        </Button>
-      )} */}
     </div>
   );
 };

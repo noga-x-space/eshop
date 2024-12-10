@@ -37,43 +37,69 @@ the collection:
 the product page: 
 
 ![image of the screen](/demo/product-page.png)
-## Getting Started
+## Getting Started - Option 1 - npm
 ### Prerequisites
   - Node.js (v14 or higher) and npm installed
   - PostgreSQL server running locally or a cloud-hosted database
 ### Installation
   - Clone the repository
 
-bash
+```bash
 git clone https://github.com/noga-x-space/eshop.git
-
 cd eshop
+```
+
 
   - Set up the backend
 
-bash
+```bash
 cd server
 npm install
-
+```
   - Set up the frontend
+```bash
 cd ../client
 npm install
+```
 
   - Database Setup
-Ensure PostgreSQL is running.
-Create a new database for the project.
-Update DATABASE_URL in the backend .env file with your PostgreSQL credentials.
+
+      Ensure PostgreSQL is running.
+      Create a new database for the project.
+      
+      Update DATABASE_URL in the backend .env file with your PostgreSQL credentials.
 
   - Run the application
     In separate terminals:
-    # Backend
-cd server
-npm start
-  # Frontend
-cd client
-npm start
+    ### Backend
+    ```bash
+    cd server
+    npm start
+    ```
+    ### Frontend
+    ```bash 
+    cd client
+    npm start
+    ```
 
-  - Access the app Open http://localhost:3000 in your browser.
+  - Access the app 
+  
+      Open http://localhost:3000 in your browser.
+## Getting Started - Option 2 - Docker Composse
+### Prerequisites
+  - Docker and Docker Compose installed
+  - PostgreSQL server running locally or a cloud-hosted database (if not using Dockerized database)
+
+### Installation
+  - Clone the repository
+
+```bash
+git clone https://github.com/noga-x-space/eshop.git
+cd eshop
+docker-compose up --build
+```
+ Open http://localhost:3000 in your browser.
+
 
 ## Project Structure
   - client/ - React frontend

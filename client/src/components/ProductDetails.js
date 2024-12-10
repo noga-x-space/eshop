@@ -1,53 +1,92 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import "./design/testing.scss";
+import { useLocation } from "react-router-dom";
+import ProductImage from "./ProductImage";
+import CartIcon from "./AddToCartBtn";
+import SimilarProducts from "./SimilarProducts";
+import ProductRating from "./ProductRating";
+import { useCookies } from "react-cookie";
 
 const ProductDetails = () => {
-  const styles = {
-    position: "relative",
-    width: "100%",
-    height: 0,
-    paddingTop: "70.7071%",
-    paddingBottom: 0,
-    boxShadow: "0 2px 8px 0 rgba(63,69,81,0.16)",
-    marginTop: "1.6em",
-    marginBottom: "0.9em",
-    overflow: "hidden",
-    borderRadius: "8px",
-    willChange: "transform",
-  };
+  const location = useLocation();
+  const product = location.state?.product; // Check for existence of product data
+  const [similarProducts, setSimilarProducts] = useState([]);
+  const [cookies, setCookie, removeCookie] = useCookies(null);
 
-  const iframeStyles = {
-    position: "absolute",
-    width: "100%",
-    height: "100%",
-    top: 0,
-    left: 0,
-    border: "none",
-    padding: 0,
-    margin: 0,
-  };
+
+  useEffect(() => {
+    const fetchSimilarProducts = async () => {
+      if (product) {
+        try {
+          const response = await fetch(
+            `${process.env.REACT_APP_BACKEND_URL}:8000/products?category=${product.category}`
+          );
+          const data = await response.json();
+          setSimilarProducts(data);
+        } catch (error) {
+          console.error("Error fetching similar products:", error);
+        }
+      }
+    };
+
+    fetchSimilarProducts();
+  }, [product]);
 
   return (
-    <div style={styles}>
-      <iframe
-        loading="lazy"
-        style={iframeStyles}
-        src="https://www.canva.com/design/DAGPyOKjROI/l0rmjbbly6Nej9RFX668WQ/view?embed"
-        allowfullscreen="allowfullscreen"
-        allow="fullscreen"
-      />
-      {/* ... other content ... */}
+    <div>
+      <div className="blobs">
+        <img
+          className="top-left-img"
+          crossOrigin="anonymous"
+          src="https://media-public.canva.com/oJYkw/MAFmhAoJYkw/1/s.png"
+          draggable="false"
+          alt="Corner brown aesthetic curve"
+        />
+        <img
+          className="bottom-left-img"
+          crossOrigin="anonymous"
+          src="https://media-public.canva.com/eKGsc/MAFp4KeKGsc/1/s.png"
+          draggable="false"
+          alt="Corner brown aesthetic curve"
+        />
+        <img
+          class="bottom-right-img"
+          crossorigin="anonymous"
+          src="https://media-public.canva.com/Z0JEA/MAFp4JZ0JEA/1/s.png"
+          draggable="false"
+        ></img>
+      </div>
+      <div className="content">
+        <div className="main-product-image" styles={{ maxWidth: "10px" }}>
+          <ProductImage productName={product.product_name} />
+        </div>
+        <div className="container-right-side">
+          <div className="product-details">
+            <h1>{product.product_name}</h1>
+            <p className="product-category">{product.category}</p>
+            <p className="product-description">{product.description}</p>
+            <p className="product-price"> ${product.price}</p>
+            {product.quantity_in_stock < 10 && (
+              <p className="product-stock">
+                Only {product.quantity_in_stock} Left!
+              </p>
+            )}
+
+            {/* ratings */}
+            <ProductRating
+              productName={product.product_name}
+              userName={cookies.UserName}
+            />
+
+            <CartIcon productName={product.product_name} />
+          </div>
+
+          <SimilarProducts className="suggestions" products={similarProducts} />
+        </div>
+
+      </div>
     </div>
   );
 };
 
 export default ProductDetails;
-
-
-// // <div style="position: relative; width: 100%; height: 0; padding-top: 70.7071%;
-// //  padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
-// //  border-radius: 8px; will-change: transform;">
-// //   <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
-// //     src="https:&#x2F;&#x2F;www.canva.com&#x2F;design&#x2F;DAGPyOKjROI&#x2F;l0rmjbbly6Nej9RFX668WQ&#x2F;view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
-// //   </iframe>
-// // </div>
-// // <a href="https:&#x2F;&#x2F;www.canva.com&#x2F;design&#x2F;DAGPyOKjROI&#x2F;l0rmjbbly6Nej9RFX668WQ&#x2F;view?utm_content=DAGPyOKjROI&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link" target="_blank" rel="noopener">White and Brown Minimalist Blank Note Document</a> על ידי polymer Horse

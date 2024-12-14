@@ -9,6 +9,14 @@ $font-family: "Helvetica Neue", Arial, sans-serif;
 // Bootstrap Customizations
 @import "~bootstrap/scss/bootstrap.scss";
 
+/* Global container for scaling */
+.App {
+  transform: scale(0.75); /* Reduce everything by 25% */
+  transform-origin: top left; /* Keep the scaling anchored to the top-left corner */
+  width: 133.33%;
+  height: 100vh; /* Ensures height matches the viewport height */
+}
+
 body {
   background-color: $background-color;
   color: $text-color;

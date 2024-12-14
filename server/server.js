@@ -1,21 +1,13 @@
 const PORT = process.env.PORT ?? 8000;
 const express = require("express");
-const { v4: uuidv4 } = require("uuid");
 const app = express();
 const pool = require("./db");
 const cors = require("cors");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const fs = require("fs");
 
 app.use(cors());
 app.use(express.json());
-// app.use(bodyParser.json());
-
-app.get("/", (req, res) => {
-  res.send("Hello from backend API!");
-  console.log(`Server is running on port ${PORT}`);
-});
 
 ////////////////////////////users
 //show all users
@@ -23,8 +15,6 @@ app.get("/getusers", async (req, res) => {
   try {
     const users = await pool.query("SELECT * FROM Users");
     res.json(users.rows);
-    console.log("users.rows");
-    console.log(users.rows);
   } catch (err) {
     console.error(err);
   }
@@ -94,8 +84,6 @@ app.get("/products", async (req, res) => {
 app.get("/products/:name/image", async (req, res) => {
   const productName = req.params.name;
 
-  // console.log("Request received for product image:", req.params.name);
-
   if (!productName) {
     return res.status(400).send("Missing product name");
   }
@@ -108,12 +96,8 @@ app.get("/products/:name/image", async (req, res) => {
 
     if (result.rows.length > 0) {
       const imageBuffer = result.rows[0].image;
-      //   const base64Image = imageBuffer.toString("base64");
 
-      res.set("Content-Type", "image/png"); // Adjust based on your image type
-      //   res.send(base64Image);
-
-      //   console.log("Image buffer:", imageBuffer); // Log the image buffer data
+      res.set("Content-Type", "image/png");
       res.send(imageBuffer);
     } else {
       res.status(404).send("Image not found");
@@ -133,7 +117,6 @@ app.get("/categories", async (req, res) => {
       "SELECT * FROM CATEGORIES LIMIT 8"
     );
     res.json(result.rows);
-    // console.log("cat.rows: ", result.rows);
   } catch (err) {
     console.error(err);
   }
@@ -159,7 +142,6 @@ app.get("/categories/:categoryID", async (req, res) => {
 ///show cart
 app.get("/cart/:userName/", async (req, res) => {
   const { userName } = req.params;
-  console.log(userName);
 
   try {
     const result = await pool.query(
@@ -167,7 +149,6 @@ app.get("/cart/:userName/", async (req, res) => {
       [userName]
     );
     res.json(result.rows);
-    console.log("cart.rows: ", result.rows);
   } catch (err) {
     console.error(err);
   }
@@ -176,7 +157,6 @@ app.get("/cart/:userName/", async (req, res) => {
 //count cart items
 app.get("/cartitems/:userName/", async (req, res) => {
   const { userName } = req.params;
-  console.log(userName);
 
   try {
     const result = await pool.query(
@@ -184,7 +164,6 @@ app.get("/cartitems/:userName/", async (req, res) => {
       [userName]
     );
     res.json(result.rows[0].sum);
-    console.log("cart items: ", result.rows[0].sum);
   } catch (err) {
     console.error(err);
   }
@@ -194,7 +173,6 @@ app.get("/cartitems/:userName/", async (req, res) => {
 ////////////////////missing functionality: in how many carts- look at products tbl
 app.post("/cart/:userName/:product/", async (req, res) => {
   const { userName, product } = req.params;
-  console.log(userName, product);
   try {
     const result = await pool.query(
       "SELECT cart_details_id, quantity FROM cartDetails WHERE user_name = $1 AND product_name = $2 ",
@@ -230,9 +208,7 @@ app.post("/cart/:userName/:product/", async (req, res) => {
           [userName]
         );
         cartId = createCartResult.rows[0].cart_id;
-        console.log(cartId);
       }
-      console.log("theee cart id isss: ", cartId);
 
       //by this point we already have the cart id record that matches from the carts table.
       //insert the product into the cartdetails table
@@ -293,9 +269,7 @@ app.get("/checkout/:userName", async (req, res) => {
         [userName]
       );
       purId = createPurResult.rows[0].purchase_id;
-      console.log(purId);
     }
-    console.log("theee purchase id isss: ", purId);
 
     //by this point we already have the purchase id record that matches from the purchases table.
     //insert the cartDetails into the purchaseDetails table
@@ -365,7 +339,6 @@ app.get("/rate/:product/", async (req, res) => {
       "SELECT COALESCE(AVG(rating), 0) as avg FROM ratings WHERE product_name = $1",
       [product]
     );
-    console.log("the avg rating is: ", avg.rows[0]);
     res.json(avg.rows[0]);
   } catch (err) {
     console.error(err);
@@ -382,7 +355,6 @@ app.get("/buyers/:product", async (req, res) => {
       "SELECT COUNT(*) FROM ratings WHERE product_name = $1",
       [product]
     );
-    // console.log("buyers' result: ", response.rows[0]);
     res.json(response.rows[0]);
   } catch (err) {
     console.error(err);

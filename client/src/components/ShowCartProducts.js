@@ -2,20 +2,22 @@ import React from "react";
 import ProductImage from "./ProductImage";
 import "./design/CartProducts.scss";
 import { useCookies } from "react-cookie";
+import { useCart } from "./CartContext";
 
 const CartProducts = ({ products }) => {
-  const [cookies] = useCookies(null);
-  const userName = cookies.UserName;
+  // const [cookies] = useCookies(null);
+  // const userName = cookies.UserName;
 
-  const handleDelete = async (productName) => {
-    try {
-      await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}:8000/delete/${userName}/${productName}`
-      );
-    } catch (err) {
-      console.error(err);
-    }
-  };
+  const {handleDelete}=useCart();
+  // const handleDelete = async (productName) => {
+  //   try {
+  //     await fetch(
+  //       `${process.env.REACT_APP_BACKEND_URL}:8000/delete/${userName}/${productName}`
+  //     );
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
+  // };
 
   return (
     <div className="cart-all-products">

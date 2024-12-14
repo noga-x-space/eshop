@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import PurchasedProducts from "./PurchasedProducts";
+import "./design/HomePage.scss";
+import { useNavigate } from "react-router-dom";
 
 export default function Homepage() {
   const [users, setUsers] = useState(null);
   const [cookies, setCookie, removeCookie] = useCookies(null);
   const [purchases, setPurchases] = useState(null);
+
+  const navigate = useNavigate();
 
   const getUsers = async () => {
     try {
@@ -36,40 +40,50 @@ export default function Homepage() {
   useEffect(() => {
     getUsers();
     getPrevPurchases();
-  }, []);
+  }, [cookies.UserName]);
 
   return (
-    <div>
+    <div className="homepage-container">
       <header className="homepage-header">
         <h1>Welcome to Our Lip Gloss Collection</h1>
         <p>
           Explore our range of beautiful lip glosses for every mood and style.
         </p>
       </header>
-      {users && users.length > 0 ? (
-        <div>
-          <h2>currently logged as: {cookies.UserName}</h2>
-          <h1>Users List:</h1>
-          <ul>
-            {users.map((user, index) => (
-              <li key={index}>{user.user_name}</li>
-            ))}
-          </ul>
-        </div>
-      ) : (
-        <p>No users found</p>
-      )}
-      {purchases && (
-        <div className="purchases">
-          {purchases.map((prod, index) => {
-            <li key={index}>{prod.product_name}</li>;
-          })}
+
+      {cookies.UserName && (
+        <div className="user-info">
+          <h2>Welcome, {cookies.UserName}</h2>
+          <p>
+            Your average rating for previous purchases: {purchases || "N/A"}
+          </p>
         </div>
       )}
-      <div>
-        <h1>My Purchased Products</h1>
+
+      <section className="purchased-products-section">
+        <h2>My Purchased Products</h2>
         <PurchasedProducts />
-      </div>
+      </section>
+
+      <section className="explore-products">
+        <h2>Explore Our Collection</h2>
+        <p>
+          Browse through our curated collections to find your perfect lip gloss.
+        </p>
+        <button
+          className="cta-button"
+          onClick={() => {
+            navigate("/shop");
+          }}
+        >
+          Browse All Products
+        </button>
+      </section>
+
+      <footer className="homepage-footer">
+        <p>&copy; 2024 Lip Gloss Collection. All rights reserved.</p>
+        <p>Follow us on social media for the latest updates!</p>
+      </footer>
     </div>
   );
 }

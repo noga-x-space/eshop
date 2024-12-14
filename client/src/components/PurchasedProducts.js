@@ -9,7 +9,7 @@ import "./design/PurchasedProducts.scss";
 
 const PurchasedProducts = () => {
   const [purchasedProducts, setPurchasedProducts] = useState([]);
-  const [cookies, setCookie, removeCookie] = useCookies(null);
+  const [cookies] = useCookies(null);
   const userName = cookies.UserName;
   const navigate = useNavigate();
 
@@ -19,7 +19,18 @@ const PurchasedProducts = () => {
         `${process.env.REACT_APP_BACKEND_URL}:8000/purchases/${userName}`
       );
       const data = await response.json();
-      setPurchasedProducts(data);
+      // filtering the products so they'd be unique
+      const seenNames = new Set();
+      const uniqueProducts = [];
+
+      data.forEach((product) => {
+        if (!seenNames.has(product.product_name)) {
+          uniqueProducts.push(product);
+          seenNames.add(product.product_name);
+        }
+      });
+
+      setPurchasedProducts(uniqueProducts);
     };
 
     fetchPurchasedProducts();
@@ -29,9 +40,7 @@ const PurchasedProducts = () => {
     <div className="purchased-products">
       {purchasedProducts.length > 0 ? (
         purchasedProducts.map((product) => (
-          <div
-            className="product-card"
-          >
+          <div className="product-card" key={product.product_name}>
             <div
               className="image-container"
               onClick={() => {

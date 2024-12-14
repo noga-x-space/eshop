@@ -9,7 +9,7 @@ services:
     depends_on:
       - backend
     env_file:
-      - ./client/src/.env
+      - ./client/.env
 
   backend:
     build: ./server

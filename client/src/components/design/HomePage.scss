@@ -1,0 +1,109 @@
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Arial", sans-serif;
+}
+
+body {
+  background-color: #f8f8f8;
+  color: #333;
+}
+
+/* Homepage Header */
+.homepage-header .cta-button {
+  background-color: #ff7f9a;
+  border: none;
+  color: white;
+  padding: 15px 30px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.homepage-header .cta-button:hover {
+  background-color: #ff3b57;
+}
+
+/* User Info Section */
+.user-info {
+  padding: 30px 20px;
+  background-color: #fff;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.user-info h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.user-info p {
+  font-size: 1.1rem;
+}
+
+/* Purchased Products Section */
+.purchased-products-section {
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  margin-bottom: 40px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.purchased-products-section h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.purchased-products-section p {
+  font-size: 1rem;
+  color: #555;
+}
+
+/* Explore Products Section */
+.explore-products {
+  text-align: center;
+  padding: 50px 20px;
+  background-color: #fff;
+  margin-bottom: 30px;
+}
+
+.explore-products h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.explore-products p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.explore-products .cta-button {
+  background-color: #ff7f9a;
+  border: none;
+  color: white;
+  padding: 15px 30px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.explore-products .cta-button:hover {
+  background-color: #ff3b57;
+}
+
+/* Footer */
+.homepage-footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+.homepage-footer p {
+  font-size: 1rem;
+  margin-top: 10px;
+}

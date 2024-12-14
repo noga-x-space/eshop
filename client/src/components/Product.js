@@ -8,12 +8,12 @@ import { useNavigate } from "react-router-dom";
 import ProductRating from "./ProductRating";
 
 const Product = ({ products }) => {
-  const [selectedProduct, setSelectedProduct] = useState(null);
+  // const [selectedProduct, setSelectedProduct] = useState(null);
   const navigate = useNavigate();
 
-  const handleProductClick = (product) => {
-    setSelectedProduct(product);
-  };
+  // const handleProductClick = (product) => {
+  //   setSelectedProduct(product);
+  // };
 
   return (
     <div className="product-page">
@@ -23,7 +23,7 @@ const Product = ({ products }) => {
             <div
               className="product-card"
               key={index}
-              onClick={() => handleProductClick(product)}
+              // onClick={() => handleProductClick(product)}
             >
               <div
                 className="image-container"

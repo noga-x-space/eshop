@@ -47,7 +47,6 @@ const ProductRating = ({ productName, userName, rateOption = false }) => {
     };
 
     fetchBought();
-    console.error("the avg rating is: ", avgRating);
   }, [userName, productName]);
 
   const handleRatingChange = async (newValue) => {

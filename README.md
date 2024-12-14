@@ -13,6 +13,7 @@ A modern, user-friendly e-commerce platform for purchasing a range of lip gloss 
 
 ## Features:
 
+  - Dynamic Cart Functionality: Using React Context to allow seamless automatic updates across components without a page refresh.
   - Dynamic Product Catalog: Browse and filter through a collection of lip glosses with dynamic categories, including options like "Pretty in Pink" and "Peachy Mood."
   - Secure Authentication: Registration and login functionality with secure token-based authentication.
   - User Cart and Checkout: Add, edit, and review items in the cart with a sleek, responsive design.
@@ -87,7 +88,7 @@ npm install
   - Access the app 
   
       Open http://localhost:3000 in your browser.
-## Getting Started - Option 2 - Docker Composse
+## Getting Started - Option 2 - Docker Compose
 ### Prerequisites
   - Docker and Docker Compose installed
   - PostgreSQL server running locally or a cloud-hosted database (if not using Dockerized database)

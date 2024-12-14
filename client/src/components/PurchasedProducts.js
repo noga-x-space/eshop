@@ -98,4 +98,3 @@ const PurchasedProducts = () => {
 
 export default PurchasedProducts;
 
-// addproduct

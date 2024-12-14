@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 
 const CategoryBTN = () => {
   const [categories, setCategories] = useState([]);
-  const [products, setProducts]=useState([])
 
   const getCategories = async () => {
     try {

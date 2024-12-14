@@ -5,23 +5,10 @@ import "./design/HomePage.scss";
 import { useNavigate } from "react-router-dom";
 
 export default function Homepage() {
-  const [users, setUsers] = useState(null);
-  const [cookies, setCookie, removeCookie] = useCookies(null);
+  const [cookies] = useCookies(null);
   const [purchases, setPurchases] = useState(null);
 
   const navigate = useNavigate();
-
-  const getUsers = async () => {
-    try {
-      const response = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}:8000/getusers`
-      );
-      const resUsers = await response.json();
-      setUsers(resUsers);
-    } catch (err) {
-      console.error(err);
-    }
-  };
 
   const getPrevPurchases = async () => {
     if (cookies.UserName) {
@@ -38,7 +25,6 @@ export default function Homepage() {
   };
 
   useEffect(() => {
-    getUsers();
     getPrevPurchases();
   }, [cookies.UserName]);
 

@@ -107,24 +107,4 @@ const ProductList = () => {
 
 export default ProductList;
 
-/// quantity:
 
-{
-  /* <div className="quantity-container">
-                <label htmlFor={`quantity-${index}`}>Qty: </label>
-                <input
-                  id={`quantity-${index}`}
-                  type="number"
-                  min="1"
-                  value={product.quantity}
-                  onChange={(e) =>
-                    handleQuantityChange(product.product_name, e.target.value)
-                  }
-                />
-              </div> */
-}
-// const handleQuantityChange = (productName, quantity) => {
-// if (quantity > 0) {
-// onQuantityUpdate(productName, quantity);
-// }
-// };

@@ -32,9 +32,6 @@ export const CartProvider = ({ children }) => {
       );
 
       if (response.ok) {
-        // const updatedCart = await response.json();
-        // setCart(updatedCart);
-        // console.log("this is the response from updating: ", updatedCart);
         await getCartData();
         await countCart();
       } else {
@@ -51,8 +48,6 @@ export const CartProvider = ({ children }) => {
         `${process.env.REACT_APP_BACKEND_URL}:8000/delete/${userName}/${productName}`
       );
       if (response.ok) {
-        // const updatedCart = await response.json();
-        // setCart(updatedCart);
         await getCartData();
         await countCart();
       } else {

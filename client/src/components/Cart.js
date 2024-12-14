@@ -1,16 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import CartProducts from "./ShowCartProducts";
 import { useCookies } from "react-cookie";
 import "./design/Cart.scss";
 import { useCart } from "./CartContext";
 
 const Cart = () => {
-  // const [cart, setCart] = useState([]);
-  const { cart , Checkout} = useCart();
-  // const {Checkout}=useCart();
+  const { cart, Checkout } = useCart();
   const [cookies] = useCookies(null);
-
-
 
   const isCartEmpty = cart.length === 0;
 

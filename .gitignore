@@ -4,6 +4,7 @@ node_modules
 .env
 .dockerignore
 *.py
+*Dockerfile*
 
 # unnecessary files
 *.txt

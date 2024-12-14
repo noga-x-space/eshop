@@ -65,7 +65,6 @@ const PurchasedProducts = () => {
                 rateOption={true}
               />
 
-              {/* <CartIcon productName={product.product_name} /> */}
             </div>
           </div>
           //   <Card key={product.product_name} sx={{ maxWidth: 345, margin: 2 }}>
@@ -98,3 +97,4 @@ const PurchasedProducts = () => {
 };
 
 export default PurchasedProducts;
+

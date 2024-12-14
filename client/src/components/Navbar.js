@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useCookies } from "react-cookie";
 import { NavLink } from "react-router-dom";
 import CartIcon from "./CartIcon";
-// import ShoppingCart from "../../public/shopping-cart.png";
 import "./design/NavBar.scss";
 
 function NavBar() {

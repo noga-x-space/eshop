@@ -6,7 +6,6 @@ import { useCart } from "./CartContext";
 
 const Cart = () => {
   const { cart, Checkout } = useCart();
-  const [cookies] = useCookies(null);
 
   const isCartEmpty = cart.length === 0;
 

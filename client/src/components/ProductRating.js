@@ -1,6 +1,6 @@
 // src/components/ProductRating.js
 import React, { useState, useEffect } from "react";
-import { Rating, Button, Typography } from "@mui/material";
+import { Rating } from "@mui/material";
 
 const ProductRating = ({ productName, userName, rateOption = false }) => {
   const [value, setValue] = useState(0);
@@ -22,7 +22,7 @@ const ProductRating = ({ productName, userName, rateOption = false }) => {
 
       // the amount of buyers
       const responseSUM = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}:8000/buyers/${productName}`
+        `${process.env.REACT_APP_BACKEND_URL}:8000/rate/buyers/${productName}`
       );
       const dataSUM = await responseSUM.json();
       setBuyers(dataSUM.count, 0);

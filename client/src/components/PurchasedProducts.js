@@ -16,7 +16,7 @@ const PurchasedProducts = () => {
   useEffect(() => {
     const fetchPurchasedProducts = async () => {
       const response = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}:8000/purchases/${userName}`
+        `${process.env.REACT_APP_BACKEND_URL}:8000/purchase/${userName}`
       );
       const data = await response.json();
       // filtering the products so they'd be unique
@@ -64,7 +64,6 @@ const PurchasedProducts = () => {
                 userName={cookies.UserName}
                 rateOption={true}
               />
-
             </div>
           </div>
           //   <Card key={product.product_name} sx={{ maxWidth: 345, margin: 2 }}>
@@ -97,4 +96,3 @@ const PurchasedProducts = () => {
 };
 
 export default PurchasedProducts;
-

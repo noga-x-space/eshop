@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useCookies } from "react-cookie";
 import Cart from "./Cart";
 import { useCart } from "./CartContext";
 

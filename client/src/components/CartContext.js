@@ -45,7 +45,7 @@ export const CartProvider = ({ children }) => {
   const handleDelete = async (productName) => {
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}:8000/delete/${userName}/${productName}`
+        `${process.env.REACT_APP_BACKEND_URL}:8000/cart/delete/${userName}/${productName}`
       );
       if (response.ok) {
         await getCartData();
@@ -87,7 +87,7 @@ export const CartProvider = ({ children }) => {
   const countCart = async () => {
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}:8000/cartitems/${userName}`
+        `${process.env.REACT_APP_BACKEND_URL}:8000/cart/${userName}/items`
       );
       const resCartCount = await response.json();
       setCartCount(resCartCount);

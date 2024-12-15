@@ -3,8 +3,6 @@ import { useCookies } from "react-cookie";
 import { useCart } from "./CartContext";
 
 function AddToCartBtn({ productName }) {
-  const [cookies, setCookie, removeCookie] = useCookies(null);
-
   const { addToCart } = useCart();
 
   return (

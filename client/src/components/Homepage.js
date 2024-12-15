@@ -46,11 +46,12 @@ export default function Homepage() {
         </div>
       )}
 
-      <section className="purchased-products-section">
-        <h2>My Purchased Products</h2>
-        <PurchasedProducts />
-      </section>
-
+      {cookies.UserName && (
+        <section className="purchased-products-section">
+          <h2>My Purchased Products</h2>
+          <PurchasedProducts />
+        </section>
+      )}
       <section className="explore-products">
         <h2>Explore Our Collection</h2>
         <p>

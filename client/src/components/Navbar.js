@@ -13,6 +13,7 @@ function NavBar() {
   const handleSignOut = () => {
     removeCookie("UserName");
     removeCookie("AuthToken");
+    removeCookie("Role");
 
     window.location.reload();
   };
@@ -52,6 +53,13 @@ function NavBar() {
               >
                 Log Out
               </button>
+            </li>
+          )}
+          {cookies.Role === "admin" && (
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/manage">
+                Manage
+              </NavLink>
             </li>
           )}
         </ul>

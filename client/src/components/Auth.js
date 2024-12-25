@@ -10,6 +10,7 @@ const Auth = () => {
   const [userName, setUserName] = useState(null);
   const [password, setPassword] = useState(null);
   const [confirmPassword, setConfirmPassword] = useState(null);
+  const [email, setEmail] = useState(null);
   const [error, setError] = useState(null);
   const [focusedButton, setFocusedButton] = useState("login");
 
@@ -27,12 +28,27 @@ const Auth = () => {
       return;
     }
 
+    //mail validation
+    const validateEmail = (email) => {
+      const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+      return emailRegex.test(email); // Returns true if email matches the pattern, false otherwise
+    };
+
+    if (!isLogin && !validateEmail(email)) {
+      setError("Please enter a valid email address.");
+      return; // Stop the form submission if the email is invalid
+    }
+
     const response = await fetch(
       `${process.env.REACT_APP_BACKEND_URL}:8000/${endpoint}`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ userName, password }),
+        body: JSON.stringify({
+          userName,
+          password,
+          ...(isLogin ? {} : { email }), // Only include email on signup
+        }),
       }
     );
     const data = await response.json();
@@ -41,6 +57,7 @@ const Auth = () => {
       setError(data.detail);
     } else {
       setCookie("UserName", data.userName);
+      setCookie("Role", data.role);
       setCookie("AuthToken", data.token);
       // history.push("/");
     }
@@ -67,11 +84,19 @@ const Auth = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
             {!isLogin && (
-              <input
-                type="password"
-                placeholder="Confirm Password"
-                onChange={(e) => setConfirmPassword(e.target.value)}
-              />
+              <div>
+                <input
+                  type="password"
+                  placeholder="Confirm Password"
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                />
+                <input
+                  type="email"
+                  placeholder="Email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
             )}
             <input
               type="submit"

@@ -26,5 +26,8 @@ node_modules
 # # .env.production.local
 
 npm-debug.log*
+server/requests*
+NOTES*
+
 # # yarn-debug.log*
 # # yarn-error.log*

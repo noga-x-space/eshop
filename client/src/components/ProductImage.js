@@ -4,7 +4,9 @@ const ProductImage = ({ productName }) => {
   const [imageSrc, setImageSrc] = useState("");
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_BACKEND_URL}:8000/products/${productName}/image`)
+    fetch(
+      `${process.env.REACT_APP_BACKEND_URL}:8000/products/${productName}/image`
+    )
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to fetch image");

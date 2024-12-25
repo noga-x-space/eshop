@@ -1,20 +1,25 @@
 .purchased-products {
-  width: 90%;
+  // width: 90%;
+  display:flex;
+  overflow-x: scroll;
+flex-di
   .product-card {
     display: flex;
     width: 100%;
-    width: 50rem;
+    // width: 30rem;
     max-width: none; // Removes the max-width of 23rem
   }
 
   .image-container {
-    max-width: 20rem;
-    width: 100%;
+    width: 100%; //makes img centered
     height: auto;
     margin-right: 2rem;
     margin-bottom: 0;
-    background-color: aqua;
-    // max-height: 5rem;
-    // max-width: fit-content;
+    max-height: 15rem;
+    
+  }
+  .product-card img {
+    max-width: 15rem; 
+    max-height: 15rem;
   }
 }

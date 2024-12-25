@@ -28,6 +28,7 @@ export default function Homepage() {
     getPrevPurchases();
   }, [cookies.UserName]);
 
+
   return (
     <div className="homepage-container">
       <header className="homepage-header">

@@ -3,20 +3,23 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "homepage": "https://noga-x-space.github.io/eshop",
   "scripts": {
-    "build": "if-env TYPE=server && (cd server && npm install)||(cd client && npm install)",
-    "server": "node ./server/server.js",
-    "client": "cd client && npm start"
+    "build": "cd client && npm install && npm run build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d client/build"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@mui/material": "^5.14.0",
+    "@paypal/react-paypal-js": "^8.7.0",
     "nginx": "^1.0.8",
     "react-router-dom": "^5.3.4",
     "react-scripts": "^5.0.1"
   },
   "devDependencies": {
+    "gh-pages": "^6.2.0",
     "vite": "^5.4.10"
   }
 }

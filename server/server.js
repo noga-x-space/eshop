@@ -3,7 +3,13 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    credentials: true, // Allow cookies to be sent
+  })
+);
+
 app.use(express.json());
 
 //routes
@@ -25,7 +31,6 @@ app.use("/checkout", checkoutRoute);
 app.use("/rate", rateRoute);
 app.use("/purchase", purchaseRoute);
 app.use("/manage", adminRoute);
-
 
 app.listen(PORT, "0.0.0.0", () => {
   console.log(`Server is running on port ${PORT}`);
